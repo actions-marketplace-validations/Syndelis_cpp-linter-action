@@ -102,21 +102,16 @@ runs:
           source '${{ github.action_path }}/venv/bin/activate'
         fi
 
-    - name: Get pip cache directory
-      id: pip-cache-dir
-      shell: bash
-      run: echo "dir=$(python3 -m pip cache dir)" >> $GITHUB_OUTPUT
-
-    - name: Cache pip
+    - name: Recover pip cache
       id: pip-cache
-      uses: actions/cache@v3
+      uses: actions/setup-python@v4
       with:
-        path: ${{ steps.pip-cache-dir.outputs.dir }}
-        key: ${{ runner.os }}-pip-${{ hashFiles('${{ github.action_path }}/requirements.txt') }}
-    
-    - name: Install cpp-linter
-      if: steps.pip-cache.outputs.cache-hit != 'true'
+        cache: 'pip'
+        cache-dependency-path: '${{ github.action_path }}/requirements.txt'
+
+    - name: Install pip dependencies on cache miss
       shell: bash
+      if: steps.pip-cache.outputs.cache-hit != 'true'
       run: python3 -m pip install -r '${{ github.action_path }}/requirements.txt'
 
     - name: Run cpp-linter
