@@ -1,4 +1,4 @@
-name: C/C++ Linter
+name: C/C++ Linter - Cacheable
 description: Lint C/C++ code with clang-format and clang-tidy then post annotations and comments with faulty results.
 author: shenxianpeng
 branding:
