@@ -104,6 +104,7 @@ runs:
 
     - name: Get pip cache directory
       id: pip-cache-dir
+      shell: bash
       run: echo "dir=$(python3 -m pip cache dir)" >> $GITHUB_OUTPUT
 
     - name: Cache pip
@@ -117,6 +118,7 @@ runs:
     
     - name: Install cpp-linter
       if: steps.pip-cache.outputs.cache-hit != 'true'
+      shell: bash
       run: python3 -m pip install -r '${{ github.action_path }}/requirements.txt'
 
     - name: Run cpp-linter
