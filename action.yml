@@ -1,5 +1,5 @@
 name: C/C++ Linter - Cacheable
-description: Lint C/C++ code with clang-format and clang-tidy then post annotations and comments with faulty results.
+description: Lint C/C++ code with clang-format and clang-tidy then post annotations and comments with faulty results. This fork allows for dependency caching.
 author: shenxianpeng
 branding:
   icon: "check-circle"
